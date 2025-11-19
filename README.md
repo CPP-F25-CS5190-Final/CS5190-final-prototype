@@ -77,6 +77,9 @@ Then install:
 pip install -r requirements.txt
 ```
 
+
+
+
 > Note: YOLOv8 is installed now so the team won’t need to change the env later when `best.pt` arrives. You can still run the prototype without weights using `--mock`.
 
 ---
@@ -128,8 +131,34 @@ Once training provides a weights file (e.g., `runs/detect/train/weights/best.pt`
 python detect_path.py --path data   --weights runs/detect/train/weights/best.pt   --conf 0.35 --iou 0.5 --show
 ```
 
-- `--classes fire smoke` are default; leave as-is or customize.
-- Add `--device cuda:0` to force GPU (if available), or use CPU by default.
+#### Using PyTorch model
+1) Running with webcam
+```base
+python -m detect --model .\model\fire_detection.pt --source 0 
+```
+  2) Running with image
+```base
+python -m detect --model .\model\fire_detection.pt --source .\test_folder\test_img.png 
+```
+3) Running with video 
+```base
+python -m detect --model .\model\fire_detection.pt --source .\test_folder\test_video.mp4 
+```
+
+#### Using ONNX model without GPU
+1) Running with webcam
+```base
+python -m detect --model .\model\fire_detection.onnx --source 0 
+```
+  2) Running with image
+```base
+python -m detect --model .\model\fire_detection.onnx --source .\test_folder\test_img.png  
+```
+3) Running with video 
+```base
+python -m detect --model .\model\fire_detection.onnx --source .\test_folder\test_video.mp4 
+```
+
 
 ---
 
@@ -192,3 +221,5 @@ Each detection is:
 ## License
 
 Internal academic project prototype. Add a license if you plan to share publicly.
+
+
